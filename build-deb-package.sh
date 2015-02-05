@@ -6,12 +6,12 @@ CACHEPATH=/var/cache/docker-builder/sbuild
 
 if [ -n "$EXTRAREPO" ] ; then
    EXTRACMD=""
-   OIFS=$IFS
+   OIFS="$IFS"
    IFS='|'
    for repo in $EXTRAREPO; do
       EXTRACMD="${EXTRACMD} --chroot-setup-commands=\"apt-add-repo deb $repo\" "
    done
-   IFS=$OIFS
+   IFS="$OIFS"
 fi
 
 if [ `find . -maxdepth 1 -name \*.dsc | wc -l` == 1 ]; then
